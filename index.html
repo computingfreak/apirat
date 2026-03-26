@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ApiRat — API Bin + Mock + Inspector</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>🐀 ApiRat</h1>
+      <p>Unified API bin, mocker, request tester, and Slack webhook helper.</p>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <h2>Request Runner</h2>
+        <div class="row">
+          <select id="method">
+            <option>GET</option>
+            <option>POST</option>
+            <option>PUT</option>
+            <option>PATCH</option>
+            <option>DELETE</option>
+          </select>
+          <input id="url" placeholder="https://httpbin.org/anything" />
+          <button id="sendBtn">Send</button>
+        </div>
+        <textarea id="headers" placeholder='Headers JSON, e.g. {"Content-Type":"application/json"}'></textarea>
+        <textarea id="body" placeholder='Request body (JSON or text)'></textarea>
+        <pre id="response">Response output will appear here...</pre>
+      </section>
+
+      <section class="card">
+        <h2>JSON Bins</h2>
+        <div class="row">
+          <input id="binName" placeholder="Bin name" />
+          <button id="newBinBtn">New Bin</button>
+          <button id="saveBinBtn">Save Bin</button>
+          <button id="deleteBinBtn">Delete Bin</button>
+        </div>
+        <select id="binList" size="5"></select>
+        <textarea id="binPayload" placeholder='{"hello":"world"}'></textarea>
+        <div class="row">
+          <button id="exportBinsBtn">Export Bins</button>
+          <button id="importBinsBtn">Import Bins</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Mock Routes</h2>
+        <div class="row">
+          <input id="routePath" placeholder="/slack/events" />
+          <select id="routeMethod">
+            <option>GET</option>
+            <option selected>POST</option>
+            <option>PUT</option>
+            <option>PATCH</option>
+            <option>DELETE</option>
+          </select>
+          <input id="routeStatus" type="number" value="200" min="100" max="599" />
+        </div>
+        <textarea id="routeHeaders" placeholder='{"Content-Type":"application/json"}'></textarea>
+        <textarea id="routeBody" placeholder='{"ok":true}'></textarea>
+        <div class="row">
+          <button id="addRouteBtn">Add / Update Route</button>
+          <button id="removeRouteBtn">Remove Route</button>
+          <button id="exportConfigBtn">Export Config</button>
+        </div>
+        <select id="routeList" size="6"></select>
+        <pre id="configPreview">Route config preview...</pre>
+      </section>
+
+      <section class="card">
+        <h2>Slack Helper</h2>
+        <p class="muted">Use a real backend URL for Slack Request URL (Worker/serverless). GitHub Pages is dashboard-only.</p>
+        <input id="slackSigningSecret" placeholder="Slack signing secret" />
+        <input id="slackTimestamp" placeholder="X-Slack-Request-Timestamp" />
+        <textarea id="slackRawBody" placeholder="Raw request body"></textarea>
+        <input id="slackSignature" placeholder="X-Slack-Signature (v0=...)" />
+        <button id="verifySlackBtn">Verify Signature (Local)</button>
+        <pre id="slackResult">Verification results...</pre>
+      </section>
+    </main>
+
+    <footer>
+      <small>Built for GitHub Pages + optional Worker endpoint.</small>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
